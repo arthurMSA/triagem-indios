@@ -2,6 +2,7 @@ package br.com.fiap.triagem.entity;
 
 import java.util.Calendar;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -39,11 +40,11 @@ public class Internacao {
 	@Column(name="dt_alta")
 	private Calendar dtAlta;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "cd_leito")
 	private Leito leito;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "cd_paciente")
 	private Paciente paciente;
 	

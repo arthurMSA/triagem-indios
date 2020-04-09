@@ -2,6 +2,7 @@ package br.com.fiap.triagem.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -33,7 +34,7 @@ public class Leito {
 	@Column(name="ds_tipo", nullable=false)
 	private Tipo tipo;
 	
-	@OneToMany(mappedBy = "leito")
+	@OneToMany(mappedBy = "leito", cascade = CascadeType.PERSIST)
 	private List<Internacao> internacao;
 
 	public Leito() {

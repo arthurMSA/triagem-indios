@@ -1,5 +1,6 @@
 package br.com.fiap.triagem.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -29,7 +30,7 @@ public class PlanoSaude {
 	@Column(name="nm_modalidade")
 	private ModalidadePlano modalidade;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "cd_convenio", nullable = false)
 	private Convenio convenio;
 
