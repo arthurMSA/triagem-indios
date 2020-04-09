@@ -13,6 +13,17 @@ import javax.persistence.Table;
 @SequenceGenerator(name="convenio", sequenceName="SQ_TB_CONVENIO", allocationSize=1)
 public class Convenio {
 	
+	@Id
+	@Column(name="cd_convenio")
+	@GeneratedValue(strategy= GenerationType.SEQUENCE, generator="convenio")
+	private int codigo;
+	
+	@Column(name="nm_razao_social", nullable=false, length=50)
+	private String razaoSocial;
+	
+	@Column(name="nr_cnpj", nullable=false, length=14)
+	private String cnpj;
+	
 	public Convenio() {
 		super();
 	}
@@ -46,16 +57,5 @@ public class Convenio {
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
-
-	@Id
-	@Column(name="cd_convenio")
-	@GeneratedValue(strategy= GenerationType.SEQUENCE, generator="convenio")
-	private int codigo;
-	
-	@Column(name="nm_razao_social", nullable=false, length=50)
-	private String razaoSocial;
-	
-	@Column(name="nr_cnpj", nullable=false, length=14)
-	private String cnpj;
 
 }
