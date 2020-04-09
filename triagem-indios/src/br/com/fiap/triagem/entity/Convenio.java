@@ -32,7 +32,7 @@ public class Convenio {
 	@OneToMany(mappedBy = "convenio", cascade = CascadeType.PERSIST)
 	private List<PlanoSaude> planos;
 	
-	@ManyToMany(mappedBy = "convenios")
+	@ManyToMany(mappedBy = "convenios", cascade = CascadeType.PERSIST)
 	private List<Paciente> pacientes;
 	
 	
