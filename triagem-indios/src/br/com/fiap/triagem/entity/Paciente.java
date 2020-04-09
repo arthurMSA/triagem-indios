@@ -1,10 +1,17 @@
 package br.com.fiap.triagem.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -23,8 +30,19 @@ public class Paciente {
 	
 	@Column(name="nr_cpf", length = 11, nullable = false)
 	private String cpf;
+	
+	@OneToMany(mappedBy = "paciente", cascade = CascadeType.PERSIST)
+	private List<Internacao> internacao;
 
+	@ManyToMany(cascade = CascadeType.PERSIST)
+	@JoinTable(name = "TB_PACIENTE_CONVENIO",
+	joinColumns = @JoinColumn(name = "cd_paciente"),
+	inverseJoinColumns = @JoinColumn(name = "nr_pf"))
+	private List<Convenio> convenios;
+
+	
 	public Paciente(String nome, String cpf) {
+		super();
 		this.nome = nome;
 		this.cpf = cpf;
 	}
@@ -55,6 +73,22 @@ public class Paciente {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+
+	public List<Internacao> getInternacao() {
+		return internacao;
+	}
+
+	public void setInternacao(List<Internacao> internacao) {
+		this.internacao = internacao;
+	}
+
+	public List<Convenio> getConvenio() {
+		return convenios;
+	}
+
+	public void setConvenio(List<Convenio> convenio) {
+		this.convenios = convenio;
 	}
 	
 }

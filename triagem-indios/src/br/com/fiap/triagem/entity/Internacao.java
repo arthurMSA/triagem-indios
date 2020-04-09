@@ -9,6 +9,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -35,6 +38,14 @@ public class Internacao {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="dt_alta")
 	private Calendar dtAlta;
+	
+	@ManyToOne
+	@JoinColumn(name = "cd_leito")
+	private Leito leito;
+	
+	@ManyToOne
+	@JoinColumn(name = "cd_paciente")
+	private Paciente paciente;
 	
 	public Internacao() {
 		super();
@@ -83,7 +94,4 @@ public class Internacao {
 	public void setPaciente(Paciente paciente) {
 		this.paciente = paciente;
 	}
-	private Leito leito;
-	private Paciente paciente;
-	
 }
