@@ -1,5 +1,7 @@
 package br.com.fiap.triagem.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -7,6 +9,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -29,10 +32,15 @@ public class Leito {
 	@Enumerated(EnumType.STRING)
 	@Column(name="ds_tipo", nullable=false)
 	private Tipo tipo;
+	
+	@OneToMany(mappedBy = "leito")
+	private List<Internacao> internacao;
 
 	public Leito() {
 		super();
 	}
+
+	
 
 	public Leito(int numLeito, int numAndar, Tipo tipo) {
 		super();
@@ -40,6 +48,8 @@ public class Leito {
 		this.numAndar = numAndar;
 		this.tipo = tipo;
 	}
+
+
 
 	public int getCodigo() {
 		return codigo;
@@ -71,6 +81,14 @@ public class Leito {
 
 	public void setTipo(Tipo tipo) {
 		this.tipo = tipo;
+	}
+
+	public List<Internacao> getInternacao() {
+		return internacao;
+	}
+
+	public void setInternacao(List<Internacao> internacao) {
+		this.internacao = internacao;
 	}
 
 }

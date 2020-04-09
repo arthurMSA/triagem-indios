@@ -7,6 +7,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -23,10 +25,60 @@ public class PlanoSaude {
 	@Column(name="nm_plano_saude")
 	private String nome;
 	
-	@Column(name="cd_convenio")
-	private Convenio convenio;
-	
 	@Enumerated(EnumType.STRING)
 	@Column(name="nm_modalidade")
 	private ModalidadePlano modalidade;
+	
+	@ManyToOne
+	@JoinColumn(name = "cd_convenio", nullable = false)
+	private Convenio convenio;
+
+	
+	
+	
+	public PlanoSaude() {
+		super();
+	}
+
+	public PlanoSaude(String nome, ModalidadePlano modalidade, Convenio convenio) {
+		super();
+		this.nome = nome;
+		this.modalidade = modalidade;
+		this.convenio = convenio;
+	}
+
+	public int getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public ModalidadePlano getModalidade() {
+		return modalidade;
+	}
+
+	public void setModalidade(ModalidadePlano modalidade) {
+		this.modalidade = modalidade;
+	}
+
+	public Convenio getConvenio() {
+		return convenio;
+	}
+
+	public void setConvenio(Convenio convenio) {
+		this.convenio = convenio;
+	}
+	
+	
+	
 }
