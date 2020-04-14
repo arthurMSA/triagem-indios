@@ -1,14 +1,18 @@
 package br.com.fiap.triagem.entity;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -30,11 +34,12 @@ public class PlanoSaude {
 	@Column(name="nm_modalidade", nullable = false)
 	private ModalidadePlano modalidade;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
 	@JoinColumn(name = "cd_convenio", nullable = false)
 	private Convenio convenio;
 
-	
+	@ManyToMany(mappedBy = "planos", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+	private List<Paciente> pacientes;
 	
 	
 	public PlanoSaude() {
@@ -79,7 +84,12 @@ public class PlanoSaude {
 	public void setConvenio(Convenio convenio) {
 		this.convenio = convenio;
 	}
-	
-	
-	
+
+	public List<Paciente> getPacientes() {
+		return pacientes;
+	}
+
+	public void setPacientes(List<Paciente> pacientes) {
+		this.pacientes = pacientes;
+	}
 }
