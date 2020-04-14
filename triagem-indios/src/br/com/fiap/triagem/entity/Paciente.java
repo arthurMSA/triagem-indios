@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,14 +32,14 @@ public class Paciente {
 	@Column(name="nr_cpf", length = 11, nullable = false)
 	private String cpf;
 	
-	@OneToMany(mappedBy = "paciente", cascade = CascadeType.PERSIST)
-	private List<Internacao> internacao;
+	@OneToMany(mappedBy = "paciente", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+	private List<Internacao> internacoes;
 
-	@ManyToMany(cascade = CascadeType.PERSIST)
-	@JoinTable(name = "TB_PACIENTE_CONVENIO",
+	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+	@JoinTable(name = "TB_PACIENTE_PLANO",
 	joinColumns = @JoinColumn(name = "cd_paciente"),
-	inverseJoinColumns = @JoinColumn(name = "cd_convenio"))
-	private List<Convenio> convenios;
+	inverseJoinColumns = @JoinColumn(name = "cd_plano_saude"))
+	private List<PlanoSaude> planos;
 
 	
 	public Paciente(String nome, String cpf) {
@@ -76,19 +77,19 @@ public class Paciente {
 	}
 
 	public List<Internacao> getInternacao() {
-		return internacao;
+		return internacoes;
 	}
 
-	public void setInternacao(List<Internacao> internacao) {
-		this.internacao = internacao;
+	public void setInternacao(List<Internacao> internacoes) {
+		this.internacoes = internacoes;
 	}
 
-	public List<Convenio> getConvenio() {
-		return convenios;
+	public List<PlanoSaude> getPlanos() {
+		return planos;
 	}
 
-	public void setConvenio(List<Convenio> convenio) {
-		this.convenios = convenio;
+	public void setPlanos(List<PlanoSaude> planos) {
+		this.planos = planos;
 	}
 	
 }

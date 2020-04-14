@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,14 +35,12 @@ public class Leito {
 	@Column(name="ds_tipo", nullable=false)
 	private Tipo tipo;
 	
-	@OneToMany(mappedBy = "leito", cascade = CascadeType.PERSIST)
-	private List<Internacao> internacao;
+	@OneToMany(mappedBy = "leito", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+	private List<Internacao> internacoes;
 
 	public Leito() {
 		super();
 	}
-
-	
 
 	public Leito(int numLeito, int numAndar, Tipo tipo) {
 		super();
@@ -49,8 +48,6 @@ public class Leito {
 		this.numAndar = numAndar;
 		this.tipo = tipo;
 	}
-
-
 
 	public int getCodigo() {
 		return codigo;
@@ -85,11 +82,11 @@ public class Leito {
 	}
 
 	public List<Internacao> getInternacao() {
-		return internacao;
+		return internacoes;
 	}
 
-	public void setInternacao(List<Internacao> internacao) {
-		this.internacao = internacao;
+	public void setInternacao(List<Internacao> internacoes) {
+		this.internacoes = internacoes;
 	}
 
 }
