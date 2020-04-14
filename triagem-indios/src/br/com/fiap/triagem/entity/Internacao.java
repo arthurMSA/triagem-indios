@@ -41,7 +41,7 @@ public class Internacao {
 	private Calendar dtAlta;
 	
 	@ManyToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "cd_leito")
+	@JoinColumn(name = "cd_leito", nullable = false)
 	private Leito leito;
 	
 	@ManyToOne(cascade = CascadeType.PERSIST)

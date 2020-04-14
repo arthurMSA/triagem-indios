@@ -34,12 +34,8 @@ public class View {
         //Obter uma instância da fabrica
         EntityManagerFactory fabrica = EntityManagerFactorySingleton.getInstance();
 
- 
-
         //Instanciar Entity Maneger
         EntityManager em = fabrica.createEntityManager();
-
- 
 
         
         Leito leito = new Leito(1, 1, Tipo.OBSERVACAO);

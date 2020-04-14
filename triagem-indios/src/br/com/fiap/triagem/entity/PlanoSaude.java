@@ -23,11 +23,11 @@ public class PlanoSaude {
 	@GeneratedValue(strategy= GenerationType.SEQUENCE, generator="planosaude")
 	private int codigo;
 	
-	@Column(name="nm_plano_saude")
+	@Column(name="nm_plano_saude", length = 30, nullable = false)
 	private String nome;
 	
 	@Enumerated(EnumType.STRING)
-	@Column(name="nm_modalidade")
+	@Column(name="nm_modalidade", nullable = false)
 	private ModalidadePlano modalidade;
 	
 	@ManyToOne(cascade = CascadeType.PERSIST)

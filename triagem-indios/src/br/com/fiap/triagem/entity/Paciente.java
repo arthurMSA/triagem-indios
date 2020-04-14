@@ -37,7 +37,7 @@ public class Paciente {
 	@ManyToMany(cascade = CascadeType.PERSIST)
 	@JoinTable(name = "TB_PACIENTE_CONVENIO",
 	joinColumns = @JoinColumn(name = "cd_paciente"),
-	inverseJoinColumns = @JoinColumn(name = "nr_pf"))
+	inverseJoinColumns = @JoinColumn(name = "cd_convenio"))
 	private List<Convenio> convenios;
 
 	
