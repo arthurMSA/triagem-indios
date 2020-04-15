@@ -41,22 +41,17 @@ public class Internacao {
 	private Calendar dtAlta;
 	
 	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-	@JoinColumn(name = "cd_leito", nullable = false)
-	private Leito leito;
-	
-	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
 	@JoinColumn(name = "cd_paciente")
 	private Paciente paciente;
 	
 	public Internacao() {
 		super();
 	}
-	public Internacao(Calendar dtInternacao, Risco risco, Calendar dtAlta, Leito leito, Paciente paciente) {
+	public Internacao(Calendar dtInternacao, Risco risco, Calendar dtAlta, Paciente paciente) {
 		super();
 		this.dtInternacao = dtInternacao;
 		this.risco = risco;
 		this.dtAlta = dtAlta;
-		this.leito = leito;
 		this.paciente = paciente;
 	}
 	public int getCodigo() {
@@ -82,12 +77,6 @@ public class Internacao {
 	}
 	public void setDtAlta(Calendar dtAlta) {
 		this.dtAlta = dtAlta;
-	}
-	public Leito getLeito() {
-		return leito;
-	}
-	public void setLeito(Leito leito) {
-		this.leito = leito;
 	}
 	public Paciente getPaciente() {
 		return paciente;

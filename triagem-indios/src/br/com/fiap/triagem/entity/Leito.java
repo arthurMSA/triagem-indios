@@ -1,7 +1,5 @@
 package br.com.fiap.triagem.entity;
 
-import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -35,9 +33,9 @@ public class Leito {
 	@Column(name="ds_tipo", nullable=false)
 	private Tipo tipo;
 	
-	@OneToMany(mappedBy = "leito", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-	private List<Internacao> internacoes;
-
+	@OneToOne(mappedBy = "leito", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	private Paciente paciente;
+	
 	public Leito() {
 		super();
 	}
@@ -81,12 +79,11 @@ public class Leito {
 		this.tipo = tipo;
 	}
 
-	public List<Internacao> getInternacao() {
-		return internacoes;
+	public Paciente getPaciente() {
+		return paciente;
 	}
 
-	public void setInternacao(List<Internacao> internacoes) {
-		this.internacoes = internacoes;
+	public void setPaciente(Paciente paciente) {
+		this.paciente = paciente;
 	}
-
 }
