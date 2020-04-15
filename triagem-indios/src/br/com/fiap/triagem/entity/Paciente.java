@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -41,17 +42,22 @@ public class Paciente {
 	inverseJoinColumns = @JoinColumn(name = "cd_plano_saude"))
 	private List<PlanoSaude> planos;
 
+	@OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@JoinColumn(name = "cd_leito")
+	private Leito leito;
 	
-	public Paciente(String nome, String cpf) {
-		super();
-		this.nome = nome;
-		this.cpf = cpf;
-	}
 
 	public Paciente() {
 		super();
 	}
 
+	public Paciente(String nome, String cpf, Leito leito) {
+		super();
+		this.nome = nome;
+		this.cpf = cpf;
+		this.leito = leito;
+	}
+	
 	public int getCodigo() {
 		return codigo;
 	}
@@ -90,6 +96,14 @@ public class Paciente {
 
 	public void setPlanos(List<PlanoSaude> planos) {
 		this.planos = planos;
+	}
+
+	public Leito getLeito() {
+		return leito;
+	}
+
+	public void setLeito(Leito leito) {
+		this.leito = leito;
 	}
 	
 }

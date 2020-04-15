@@ -38,10 +38,10 @@ public class View {
         
         Leito leito = new Leito(1, 1, Tipo.OBSERVACAO);
         
-        Paciente paciente = new Paciente("Laura", "12345678901");
+        Paciente paciente = new Paciente("Laura", "12345678901", leito);
         
         Internacao internacao = new Internacao(new GregorianCalendar(2020, Calendar.DECEMBER, 4), 
-                Risco.GRAVE, new GregorianCalendar(2020, Calendar.DECEMBER, 9), leito, paciente);
+                Risco.GRAVE, new GregorianCalendar(2020, Calendar.DECEMBER, 9), paciente);
         
         Convenio convenio = new Convenio("Econumus", "12345678901234");
         
