@@ -38,7 +38,7 @@ public class PlanoSaude {
 	@JoinColumn(name = "cd_convenio", nullable = false)
 	private Convenio convenio;
 
-	@ManyToMany(mappedBy = "planos", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+	@ManyToMany(mappedBy = "planos")
 	private List<Paciente> pacientes;
 	
 	
