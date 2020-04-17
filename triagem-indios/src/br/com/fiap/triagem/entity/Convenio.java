@@ -2,10 +2,8 @@ package br.com.fiap.triagem.entity;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,7 +27,7 @@ public class Convenio {
 	@Column(name="nr_cnpj", nullable=false, length=14)
 	private String cnpj;
 	
-	@OneToMany(mappedBy = "convenio", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "convenio")
 	private List<PlanoSaude> planos;
 	
 	public Convenio() {

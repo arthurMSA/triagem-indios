@@ -33,7 +33,7 @@ public class Paciente {
 	@Column(name="nr_cpf", length = 11, nullable = false)
 	private String cpf;
 	
-	@OneToMany(mappedBy = "paciente", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "paciente", cascade = CascadeType.REMOVE)
 	private List<Internacao> internacoes;
 
 	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
